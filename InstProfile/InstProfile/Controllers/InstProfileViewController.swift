@@ -4,7 +4,7 @@
 //
 //  Created by Владимир Есаян on 18.09.2023.
 //
-
+import SnapKit
 import UIKit
 
 class InstProfileViewController: UIViewController {
