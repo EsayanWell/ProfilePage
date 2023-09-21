@@ -28,9 +28,9 @@ class StoryCell: UICollectionViewCell {
     }
     
     //функция выполняет задачу обновления интерфейсных элементов на экране информацией из объекта Expense, переданного в качестве параметра
-    func set(story: Story) {
-        storyImageView.image = story.storyImage
-        storyLabel.text      = story.storyText
+    func set(storiesArray: Story) {
+        storyImageView.image = storiesArray.storyImage
+        storyLabel.text      = storiesArray.storyText
     }
     
     //MARK: - configures

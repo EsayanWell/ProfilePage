@@ -11,8 +11,8 @@ class ProfileViewController: UIViewController {
     
     //MARK: constants and vars
     //массив историй
-    var storiesArray: [Story] = []
-    var postsArray = [UIImage]()
+    private var storiesArray: [Story] = []
+    private var postsArray = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
         //Эта строка регистрирует класс VerticalCell для использования в коллекции с определенным идентификатором "VerticalCell"
         instCollectionView.register(StoryCell.self, forCellWithReuseIdentifier: "StoryCell")
         instCollectionView.register(PostCell.self, forCellWithReuseIdentifier: "PostCell")
-        instCollectionView.backgroundColor = .white
+        instCollectionView.backgroundColor = .blue
         view.addSubview(instCollectionView)
         
         //настройка conttrsits
@@ -86,11 +86,11 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryCell", for: indexPath) as! StoryCell
             let story = storiesArray[indexPath.row]
-            cell.set(story: story)
+            cell.set(storiesArray: story)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
-            let post = postsArray[indexPath.row]
+            cell.postImageView.image = postsArray[indexPath.row]
             return cell
         }
     }

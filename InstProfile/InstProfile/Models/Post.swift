@@ -8,5 +8,5 @@
 import Foundation
 
 struct Post {
-    var postImage: String?
+    var postImage: String
 }
