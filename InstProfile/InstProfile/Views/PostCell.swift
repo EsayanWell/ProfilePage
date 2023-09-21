@@ -8,23 +8,43 @@
 import UIKit
 
 class PostCell: UICollectionViewCell {
-    var imageView: UIImageView!
-    var captionLabel: UILabel!
+    var postImageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.width))
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        contentView.addSubview(imageView)
-
-        captionLabel = UILabel(frame: CGRect(x: 0, y: frame.width, width: frame.width, height: frame.height - frame.width))
-        captionLabel.numberOfLines = 0
-        contentView.addSubview(captionLabel)
+        
+        //добавляю элементы на view
+        addSubview(postImageView)
+        
+        //функции настройки элементов ячейки
+        imageViewCongigure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - configures
+    
+    //настройка изображения
+    func imageViewCongigure() {
+        //содержимое контейнера будет отображаться только в пределах его рамок, отсекая все, что находится за его пределами
+        postImageView.clipsToBounds = true
+        postImageView = UIImageView(frame: contentView.bounds)
+        postImageView.contentMode = .scaleAspectFill
+        postImageView.translatesAutoresizingMaskIntoConstraints = false
+        postImageView.backgroundColor = .blue
+    }
+    
+    //MARK: - Constraits
+    
+    func setConstraits() {
+        // Настройка ограничений для imageView,
+        postImageView.snp.makeConstraints { make in
+            // Занимайте все края contentView
+            make.edges.equalTo(contentView)
+        }
+    }
 }
+
+

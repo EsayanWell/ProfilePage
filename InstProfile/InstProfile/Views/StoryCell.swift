@@ -9,8 +9,8 @@ import UIKit
 
 class StoryCell: UICollectionViewCell {
     var storyImageView = UIImageView()
-    var storyLabel = UILabel()
-
+    let storyLabel = UILabel()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         //добавляю элементы на view
@@ -20,14 +20,17 @@ class StoryCell: UICollectionViewCell {
         //функции настройки элементов ячейки
         configureImageView()
         congigureLabel()
-
-        storyImageView = UIImageView(frame: contentView.bounds)
-        storyImageView.contentMode = .scaleAspectFill
-        storyImageView.clipsToBounds = true
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //функция выполняет задачу обновления интерфейсных элементов на экране информацией из объекта Expense, переданного в качестве параметра
+    func set(story: Story) {
+        storyImageView.image = story.storyImage
+        storyLabel.text      = story.storyText
     }
     
     //MARK: - configures
@@ -38,7 +41,10 @@ class StoryCell: UICollectionViewCell {
         storyImageView.layer.cornerRadius = 30
         //содержимое контейнера будет отображаться только в пределах его рамок, отсекая все, что находится за его пределами
         storyImageView.clipsToBounds = true
+        storyImageView.contentMode = .scaleAspectFill
+        storyImageView = UIImageView(frame: contentView.bounds)
         storyImageView.translatesAutoresizingMaskIntoConstraints = false
+        storyImageView.backgroundColor = .purple
     }
     
     //настройка текста
@@ -58,10 +64,19 @@ class StoryCell: UICollectionViewCell {
     //MARK: - Constraits
     
     func setConstraits() {
-        storyImageView.snp.makeConstraints { maker in
-            maker.leading.trailing.top.equalToSuperview()
-            maker.width.equalTo(60)
-            maker.height.equalTo(60)
+        // Настройка constraints для imageView
+        storyImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(contentView)
+            make.top.equalTo(contentView).offset(10)
+            make.width.height.equalTo(60)
+
+        }
+        
+        // Настройка constraints для label
+        storyLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(contentView)
+            make.top.equalTo(storyImageView.snp.bottom).offset(10)
         }
     }
 }
+
