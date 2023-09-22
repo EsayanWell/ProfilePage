@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class StoryCell: UICollectionViewCell {
     var storyImageView = UIImageView()
     let storyLabel = UILabel()
@@ -66,19 +67,15 @@ class StoryCell: UICollectionViewCell {
     
     func setConstraits() {
         // Настройка constraints для imageView
-        storyImageView.snp.makeConstraints { make in
-            make.centerX.equalTo(contentView)
-            make.top.equalTo(contentView).offset(10)
-            make.width.height.equalTo(60)
+        NSLayoutConstraint.activate([
+            storyImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            storyImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            storyImageView.heightAnchor.constraint(equalToConstant: 60),
+            storyImageView.widthAnchor.constraint(equalToConstant: 60),
             
-        }
-        
-        // Настройка constraints для label
-        storyLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(contentView)
-            make.top.equalTo(storyImageView.snp.bottom).offset(10)
-            make.bottom.equalTo(storyImageView.snp.bottom).offset(90)
-        }
+            storyLabel.topAnchor.constraint(equalTo: storyImageView.bottomAnchor, constant: 10),
+            storyLabel.centerXAnchor.constraint(equalTo: storyImageView.centerXAnchor)
+        ])
     }
 }
 

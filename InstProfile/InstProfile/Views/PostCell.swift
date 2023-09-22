@@ -25,6 +25,11 @@ class PostCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // функция выполняет задачу обновления интерфейсных элементов на экране информацией из объекта Expense, переданного в качестве параметра
+    func set(postsArray: Post) {
+        postImageView.image = postsArray.postImage
+    }
+    
     // MARK: - configures
     
     // настройка изображения
@@ -41,10 +46,12 @@ class PostCell: UICollectionViewCell {
     
     func setConstraits() {
         // Настройка ограничений для imageView,
-        postImageView.snp.makeConstraints { make in
-            // Занимайте все края contentView
-            make.top.equalTo(contentView).offset(200)
-            make.edges.equalTo(contentView)
-        }
+        NSLayoutConstraint.activate([
+            postImageView.topAnchor.constraint(equalTo: topAnchor, constant: 300),
+            postImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            postImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            postImageView.heightAnchor.constraint(equalToConstant: 200),
+            postImageView.widthAnchor.constraint(equalToConstant: 200)
+        ])
     }
 }

@@ -4,7 +4,7 @@
 //
 //  Created by Владимир Есаян on 18.09.2023.
 //
-import SnapKit
+
 import UIKit
 
 class ProfileViewController: UIViewController {
@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController {
     // MARK: - constants and vars
     // массив историй
     private var storiesArray: [Story] = []
-    private var postsArray = [UIImage]()
+    private var postsArray: [Post] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +21,11 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .black
         title = "elonmuskrus"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        storiesArray = fetchData()
-        // загрузка данных историй и постов в массивы
-        loadPosts()
-        loadPosts()
+        //приравнял массивы
+        storiesArray = fetchStoryData()
+        postsArray = fetchPostData()
+        
+        
         
         // MARK: настройка UICollectionView
         // cоздаем UICollectionView
@@ -42,30 +43,19 @@ class ProfileViewController: UIViewController {
         instCollectionView.register(PostCell.self, forCellWithReuseIdentifier: "PostCell")
         instCollectionView.backgroundColor = .blue
         view.addSubview(instCollectionView)
+        instCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        // настройка constraits
         
-        // настройка conttrsits
-        instCollectionView.snp.makeConstraints { maker in
-            maker.left.right.top.bottom.equalToSuperview()
-        }
-        
-        // функция загрузки фото постов в массив
-        func loadPosts() {
-            postsArray.append(UIImage(named: "1")!)
-            postsArray.append(UIImage(named: "2")!)
-            postsArray.append(UIImage(named: "3")!)
-            postsArray.append(UIImage(named: "4")!)
-            postsArray.append(UIImage(named: "5")!)
-            postsArray.append(UIImage(named: "6")!)
-            postsArray.append(UIImage(named: "7")!)
-            postsArray.append(UIImage(named: "8")!)
-            postsArray.append(UIImage(named: "9")!)
-            postsArray.append(UIImage(named: "10")!)
-            postsArray.append(UIImage(named: "11")!)
-            postsArray.append(UIImage(named: "12")!)
+        NSLayoutConstraint.activate([
+            instCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 170),
+            instCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            instCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            instCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
         }
         
     }
-}
+
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -86,12 +76,13 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryCell", for: indexPath) as! StoryCell
-            let story = storiesArray[indexPath.row]
-            cell.set(storiesArray: story)
+            let stories = storiesArray[indexPath.row]
+            cell.set(storiesArray: stories)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
-            cell.postImageView.image = postsArray[indexPath.row]
+            let posts = postsArray[indexPath.row]
+            cell.set(postsArray: posts)
             return cell
         }
     }
@@ -100,7 +91,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     // вы настраиваете размеры ячеек (cell size) для элементов коллекции (UICollectionView) в зависимости от их секции (section) и индекса внутри секции (indexPath).
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: 100, height: 100)
+            return CGSize(width: 60, height: 60)
         } else {
             return CGSize(width: collectionView.frame.width, height: 300)
         }
@@ -110,7 +101,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension ProfileViewController {
     
     // данные для массива
-    func fetchData() -> [Story] {
+    func fetchStoryData() -> [Story] {
         let story1 = Story(storyImage: storyImages.ufo, storyText: "UFO")
         let story2 = Story(storyImage: storyImages.starship, storyText: "Starship")
         let story3 = Story(storyImage: storyImages.mars, storyText: "Mars")
@@ -119,5 +110,25 @@ extension ProfileViewController {
         let story6 = Story(storyImage: storyImages.starlink, storyText: "Starlink")
         
         return [story1, story2, story3, story4, story5, story6]
+        
+    }
+    //данные для массива
+    func fetchPostData() -> [Post] {
+        let post1  = Post(postImage: postImages.post1)
+        let post2  = Post(postImage: postImages.post2)
+        let post3  = Post(postImage: postImages.post3)
+        let post4  = Post(postImage: postImages.post4)
+        let post5  = Post(postImage: postImages.post5)
+        let post6  = Post(postImage: postImages.post6)
+        let post7  = Post(postImage: postImages.post7)
+        let post8  = Post(postImage: postImages.post8)
+        let post9  = Post(postImage: postImages.post9)
+        let post10 = Post(postImage: postImages.post10)
+        let post11 = Post(postImage: postImages.post11)
+        let post12 = Post(postImage: postImages.post12)
+        
+        return [post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12]
+        
     }
 }
+
