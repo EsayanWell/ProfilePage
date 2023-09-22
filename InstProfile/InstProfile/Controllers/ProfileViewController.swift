@@ -13,7 +13,14 @@ class ProfileViewController: UIViewController {
     // массив историй
     private var storiesArray: [Story] = []
     private var postsArray: [Post] = []
-    
+    private let instCollectionView: UICollectionView = {
+          let instLayout = UICollectionViewFlowLayout()
+        instLayout.scrollDirection = .vertical
+          let instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: instLayout)
+        instCollectionView.backgroundColor = .black
+        instCollectionView.translatesAutoresizingMaskIntoConstraints = false
+          return instCollectionView
+      }()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,22 +35,17 @@ class ProfileViewController: UIViewController {
         
         
         // MARK: настройка UICollectionView
-        // cоздаем UICollectionView
-        // var instCollectionView = UICollectionView()
-        // представляет собой стандартный макет (layout) для UICollectionView
-        let instLayout = UICollectionViewFlowLayout()
         // коллекция будет занимать всю доступную область текущего представления
-        let instCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: instLayout)
-        instCollectionView.backgroundColor = .white
+     
+      
+        instCollectionView.backgroundColor = .black
         // подписка на протоколы
         instCollectionView.delegate = self
         instCollectionView.dataSource = self
         // Эта строка регистрирует класс VerticalCell для использования в коллекции с определенным идентификатором "VerticalCell"
         instCollectionView.register(StoryCell.self, forCellWithReuseIdentifier: "StoryCell")
         instCollectionView.register(PostCell.self, forCellWithReuseIdentifier: "PostCell")
-        instCollectionView.backgroundColor = .blue
         view.addSubview(instCollectionView)
-        instCollectionView.translatesAutoresizingMaskIntoConstraints = false
         // настройка constraits
         
         NSLayoutConstraint.activate([
@@ -69,9 +71,20 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         if section == 0 {
             return storiesArray.count
         } else {
-            return postsArray.count
+            return 3
         }
     }
+    
+    //функция для отображения количества строк на экране
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            return postsArray.count 
+        }
+    }
+
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
@@ -91,11 +104,20 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     // вы настраиваете размеры ячеек (cell size) для элементов коллекции (UICollectionView) в зависимости от их секции (section) и индекса внутри секции (indexPath).
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: 60, height: 60)
+            return CGSize(width: 100, height: 70)
         } else {
-            return CGSize(width: collectionView.frame.width, height: 300)
+            return CGSize(width: 300, height: 300)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, scrollDirectionForSectionAt section: Int) -> UICollectionView.ScrollDirection {
+        if section == 0 {
+            return .horizontal
+        } else {
+            return .vertical
+        }
+    }
+
 }
 
 extension ProfileViewController {

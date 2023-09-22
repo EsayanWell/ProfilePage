@@ -36,10 +36,9 @@ class PostCell: UICollectionViewCell {
     func imageViewCongigure() {
         // содержимое контейнера будет отображаться только в пределах его рамок, отсекая все, что находится за его пределами
         postImageView.clipsToBounds = true
-        postImageView = UIImageView(frame: contentView.bounds)
         postImageView.contentMode = .scaleAspectFill
         postImageView.translatesAutoresizingMaskIntoConstraints = false
-        postImageView.backgroundColor = .blue
+        postImageView.backgroundColor = .white
     }
     
     // MARK: - Constraits
@@ -47,11 +46,11 @@ class PostCell: UICollectionViewCell {
     func setConstraits() {
         // Настройка ограничений для imageView,
         NSLayoutConstraint.activate([
-            postImageView.topAnchor.constraint(equalTo: topAnchor, constant: 300),
+            postImageView.topAnchor.constraint(equalTo: topAnchor, constant: 80),
             postImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             postImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            postImageView.heightAnchor.constraint(equalToConstant: 200),
-            postImageView.widthAnchor.constraint(equalToConstant: 200)
+            postImageView.heightAnchor.constraint(equalToConstant: 180),
+            postImageView.widthAnchor.constraint(equalToConstant: 180)
         ])
     }
 }
