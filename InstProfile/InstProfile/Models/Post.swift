@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
+// MARK: - Post model
 struct Post {
-    var postImage: String
+    var postImage: UIImage
 }

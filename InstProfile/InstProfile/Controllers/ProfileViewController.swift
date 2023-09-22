@@ -9,8 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    //MARK: constants and vars
-    //массив историй
+    // MARK: - constants and vars
+    // массив историй
     private var storiesArray: [Story] = []
     private var postsArray = [UIImage]()
     
@@ -22,32 +22,33 @@ class ProfileViewController: UIViewController {
         title = "elonmuskrus"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         storiesArray = fetchData()
-        //загрузка данных историй и постов в массивы
+        // загрузка данных историй и постов в массивы
+        loadPosts()
         loadPosts()
         
-        //MARK: настройка UICollectionView
-        //cоздаем UICollectionView
-        //var instCollectionView = UICollectionView()
-        //представляет собой стандартный макет (layout) для UICollectionView
+        // MARK: настройка UICollectionView
+        // cоздаем UICollectionView
+        // var instCollectionView = UICollectionView()
+        // представляет собой стандартный макет (layout) для UICollectionView
         let instLayout = UICollectionViewFlowLayout()
-        //коллекция будет занимать всю доступную область текущего представления
+        // коллекция будет занимать всю доступную область текущего представления
         let instCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: instLayout)
         instCollectionView.backgroundColor = .white
-        //подписка на протоколы
+        // подписка на протоколы
         instCollectionView.delegate = self
         instCollectionView.dataSource = self
-        //Эта строка регистрирует класс VerticalCell для использования в коллекции с определенным идентификатором "VerticalCell"
+        // Эта строка регистрирует класс VerticalCell для использования в коллекции с определенным идентификатором "VerticalCell"
         instCollectionView.register(StoryCell.self, forCellWithReuseIdentifier: "StoryCell")
         instCollectionView.register(PostCell.self, forCellWithReuseIdentifier: "PostCell")
         instCollectionView.backgroundColor = .blue
         view.addSubview(instCollectionView)
         
-        //настройка conttrsits
+        // настройка conttrsits
         instCollectionView.snp.makeConstraints { maker in
             maker.left.right.top.bottom.equalToSuperview()
         }
         
-        //функция загрузки фото постов в массив
+        // функция загрузки фото постов в массив
         func loadPosts() {
             postsArray.append(UIImage(named: "1")!)
             postsArray.append(UIImage(named: "2")!)
@@ -68,12 +69,12 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    //кол-во секций (одна для историй, другая для постов)
+    // кол-во секций (одна для историй, другая для постов)
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
-    //используется для определения количества элементов (ячеек) в указанной секции коллекции
+    // используется для определения количества элементов (ячеек) в указанной секции коллекции
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return storiesArray.count
@@ -96,25 +97,27 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     // UICollectionViewDelegateFlowLayout методы
-    //вы настраиваете размеры ячеек (cell size) для элементов коллекции (UICollectionView) в зависимости от их секции (section) и индекса внутри секции (indexPath).
+    // вы настраиваете размеры ячеек (cell size) для элементов коллекции (UICollectionView) в зависимости от их секции (section) и индекса внутри секции (indexPath).
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            if indexPath.section == 0 {
-                return CGSize(width: 100, height: 100)
-            } else {
-                return CGSize(width: collectionView.frame.width, height: 300)
-            }
-        }
-}
-extension ProfileViewController {
-        
-        func fetchData() -> [Story] {
-            let story1 = Story(storyImage: storyImages.ufo, storyText: "UFO")
-            let story2 = Story(storyImage: storyImages.starship, storyText: "Starship")
-            let story3 = Story(storyImage: storyImages.mars, storyText: "Mars")
-            let story4 = Story(storyImage: storyImages.spaceRover, storyText: "Space Rover")
-            let story5 = Story(storyImage: storyImages.telescope, storyText: "Telescope")
-            let story6 = Story(storyImage: storyImages.starlink, storyText: "Starlink")
-            
-            return [story1, story2, story3, story4, story5, story6]
+        if indexPath.section == 0 {
+            return CGSize(width: 100, height: 100)
+        } else {
+            return CGSize(width: collectionView.frame.width, height: 300)
         }
     }
+}
+
+extension ProfileViewController {
+    
+    // данные для массива
+    func fetchData() -> [Story] {
+        let story1 = Story(storyImage: storyImages.ufo, storyText: "UFO")
+        let story2 = Story(storyImage: storyImages.starship, storyText: "Starship")
+        let story3 = Story(storyImage: storyImages.mars, storyText: "Mars")
+        let story4 = Story(storyImage: storyImages.spaceRover, storyText: "Space Rover")
+        let story5 = Story(storyImage: storyImages.telescope, storyText: "Telescope")
+        let story6 = Story(storyImage: storyImages.starlink, storyText: "Starlink")
+        
+        return [story1, story2, story3, story4, story5, story6]
+    }
+}
