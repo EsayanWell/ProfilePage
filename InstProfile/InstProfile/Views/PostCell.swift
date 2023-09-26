@@ -49,8 +49,9 @@ class PostCell: UICollectionViewCell {
             postImageView.topAnchor.constraint(equalTo: topAnchor, constant: 80),
             postImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             postImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            postImageView.heightAnchor.constraint(equalToConstant: 180),
-            postImageView.widthAnchor.constraint(equalToConstant: 180)
+            postImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            postImageView.heightAnchor.constraint(equalToConstant: 380),
+            postImageView.widthAnchor.constraint(equalToConstant: 380)
         ])
     }
 }

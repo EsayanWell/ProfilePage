@@ -40,7 +40,7 @@ class StoryCell: UICollectionViewCell {
     // настройка изображения
     func configureImageView() {
         // устанавливает радиус скругления углов
-        storyImageView.layer.cornerRadius = 40
+        storyImageView.layer.cornerRadius = 25
         // содержимое контейнера будет отображаться только в пределах его рамок, отсекая все, что находится за его пределами
         storyImageView.clipsToBounds = true
         storyImageView.contentMode = .scaleAspectFill
@@ -70,10 +70,12 @@ class StoryCell: UICollectionViewCell {
             storyImageView.topAnchor.constraint(equalTo: topAnchor),
             storyImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             storyImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            storyImageView.heightAnchor.constraint(equalToConstant: 80),
-            storyImageView.widthAnchor.constraint(equalToConstant: 80),
+            //storyImageView.bottomAnchor.constraint(equalTo: topAnchor,constant: 250),
+            storyImageView.heightAnchor.constraint(equalToConstant: 50),
+            storyImageView.widthAnchor.constraint(equalToConstant: 50),
             
-            storyLabel.topAnchor.constraint(equalTo: storyImageView.bottomAnchor, constant: 10),
+           
+            storyLabel.bottomAnchor.constraint(equalTo: storyImageView.bottomAnchor, constant: 10),
             storyLabel.centerXAnchor.constraint(equalTo: storyImageView.centerXAnchor)
         ])
     }

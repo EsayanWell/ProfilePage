@@ -14,17 +14,18 @@ class ProfileViewController: UIViewController {
     private var storiesArray: [Story] = []
     private var postsArray: [Post] = []
     private let instCollectionView: UICollectionView = {
-          let instLayout = UICollectionViewFlowLayout()
+        let instLayout = UICollectionViewFlowLayout()
         instLayout.scrollDirection = .vertical
-          let instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: instLayout)
+        let instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: instLayout)
+        instLayout.minimumInteritemSpacing = 10
         instCollectionView.backgroundColor = .black
         instCollectionView.translatesAutoresizingMaskIntoConstraints = false
-          return instCollectionView
-      }()
+        return instCollectionView
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        setupInstCollectionView()
         view.backgroundColor = .black
         title = "elonmuskrus"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -32,12 +33,12 @@ class ProfileViewController: UIViewController {
         storiesArray = fetchStoryData()
         postsArray = fetchPostData()
         
+    }
+    
+    // MARK: настройка UICollectionView
+    // коллекция будет занимать всю доступную область текущего представления
+    private func setupInstCollectionView() {
         
-        
-        // MARK: настройка UICollectionView
-        // коллекция будет занимать всю доступную область текущего представления
-     
-      
         instCollectionView.backgroundColor = .black
         // подписка на протоколы
         instCollectionView.delegate = self
@@ -54,11 +55,11 @@ class ProfileViewController: UIViewController {
             instCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             instCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        }
-        
     }
+    
+}
 
-
+//MARK: - UICollectionViewDataSourse
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     // кол-во секций (одна для историй, другая для постов)
@@ -71,19 +72,18 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         if section == 0 {
             return storiesArray.count
         } else {
-            return 3
+            return postsArray.count
         }
     }
     
     //функция для отображения количества строк на экране
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            return postsArray.count 
-        }
-    }
-
+    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //        if section == 0 {
+    //            return 1
+    //        } else {
+    //            return postsArray.count
+    //        }
+    //    }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -100,15 +100,21 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     
-    // UICollectionViewDelegateFlowLayout методы
-    // вы настраиваете размеры ячеек (cell size) для элементов коллекции (UICollectionView) в зависимости от их секции (section) и индекса внутри секции (indexPath).
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
-            return CGSize(width: 100, height: 70)
-        } else {
-            return CGSize(width: 300, height: 300)
-        }
+}
+// UICollectionViewDelegateFlowLayout методы
+// вы настраиваете размеры ячеек (cell size) для элементов коллекции (UICollectionView) в зависимости от их секции (section) и индекса внутри секции (indexPath).
+extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let width = view.frame.width
+    
+    if indexPath.section == 0 {
+        let storyWidth = (width - 30) / 3
+        return CGSize(width: storyWidth, height: 100)
+    } else {
+        let itemWidth = (width - 30) / 3
+        return CGSize(width: itemWidth, height: 230)
     }
+}
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, scrollDirectionForSectionAt section: Int) -> UICollectionView.ScrollDirection {
         if section == 0 {
@@ -117,7 +123,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             return .vertical
         }
     }
-
+    
 }
 
 extension ProfileViewController {
