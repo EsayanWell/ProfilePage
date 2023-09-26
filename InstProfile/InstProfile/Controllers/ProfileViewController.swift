@@ -15,9 +15,9 @@ class ProfileViewController: UIViewController {
     private var postsArray: [Post] = []
     private let instCollectionView: UICollectionView = {
         let instLayout = UICollectionViewFlowLayout()
-        instLayout.scrollDirection = .vertical
+        // instLayout.scrollDirection = .vertical
         let instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: instLayout)
-        instLayout.minimumInteritemSpacing = 10
+        instLayout.minimumLineSpacing = 10
         instCollectionView.backgroundColor = .black
         instCollectionView.translatesAutoresizingMaskIntoConstraints = false
         return instCollectionView
@@ -70,20 +70,14 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     // используется для определения количества элементов (ячеек) в указанной секции коллекции
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return storiesArray.count
+            return storiesArray.count - 1
         } else {
             return postsArray.count
         }
     }
     
-    //функция для отображения количества строк на экране
-    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //        if section == 0 {
-    //            return 1
-    //        } else {
-    //            return postsArray.count
-    //        }
-    //    }
+    
+    
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -104,17 +98,18 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 // UICollectionViewDelegateFlowLayout методы
 // вы настраиваете размеры ячеек (cell size) для элементов коллекции (UICollectionView) в зависимости от их секции (section) и индекса внутри секции (indexPath).
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
-func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = view.frame.width
     
-    if indexPath.section == 0 {
-        let storyWidth = (width - 30) / 3
-        return CGSize(width: storyWidth, height: 100)
-    } else {
-        let itemWidth = (width - 30) / 3
-        return CGSize(width: itemWidth, height: 230)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = view.frame.width
+        
+        if indexPath.section == 0 {
+            // let storyWidth = (width - 30) / 3
+            return CGSize(width: 60, height: 60)
+        } else {
+            let itemWidth = (width - 30) / 3
+            return CGSize(width: itemWidth, height: 230)
+        }
     }
-}
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, scrollDirectionForSectionAt section: Int) -> UICollectionView.ScrollDirection {
         if section == 0 {
@@ -133,7 +128,7 @@ extension ProfileViewController {
         let story1 = Story(storyImage: storyImages.ufo, storyText: "UFO")
         let story2 = Story(storyImage: storyImages.starship, storyText: "Starship")
         let story3 = Story(storyImage: storyImages.mars, storyText: "Mars")
-        let story4 = Story(storyImage: storyImages.spaceRover, storyText: "Space Rover")
+        let story4 = Story(storyImage: storyImages.spaceRover, storyText: "Rover")
         let story5 = Story(storyImage: storyImages.telescope, storyText: "Telescope")
         let story6 = Story(storyImage: storyImages.starlink, storyText: "Starlink")
         
