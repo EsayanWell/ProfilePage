@@ -31,14 +31,48 @@ class ProfileViewController: UIViewController {
         postsArray = fetchPostData()
     }
     
+    private func makeLayout() -> UICollectionViewCompositionalLayout {
+           let layout = UICollectionViewCompositionalLayout { [unowned self] sectionIndex, _ in
+               switch sectionIndex {
+               case 0: return makeStoriesSection()
+               case 1: return makePostsSection()
+               default: return nil
+               }
+           }
+           return layout
+       }
+
+       private func makeStoriesSection() -> NSCollectionLayoutSection {
+           let item = NSCollectionLayoutItem(layoutSize: .init(
+               widthDimension: .fractionalWidth(1),
+               heightDimension: .fractionalHeight(1)
+           ))
+           let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(60), heightDimension: .absolute(90)), subitems: [item])
+           let section = NSCollectionLayoutSection(group: group)
+           section.interGroupSpacing = 30
+           section.orthogonalScrollingBehavior = .continuous
+           return section
+       }
+
+       private func makePostsSection() -> NSCollectionLayoutSection {
+           let item = NSCollectionLayoutItem(layoutSize: .init(
+               widthDimension: .fractionalWidth(1/3),
+               heightDimension: .fractionalHeight(1)
+           ))
+           item.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+           let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(230)), subitems: [item])
+           let section = NSCollectionLayoutSection(group: group)
+           return section
+       }
+
+    
     // MARK: настройка UICollectionView
     
     // коллекция будет занимать всю доступную область текущего представления
     private func setupInstCollectionView() {
         // Настройте макет UICollectionView для вертикального скролла
-        instLayout.scrollDirection = .vertical
-        instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: instLayout)
-        instCollectionView.collectionViewLayout = instLayout
+        instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: makeLayout())
+        instCollectionView.collectionViewLayout = makeLayout()
         instCollectionView.backgroundColor = .black
        
         instCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,12 +86,13 @@ class ProfileViewController: UIViewController {
         // настройка constraits
         
         NSLayoutConstraint.activate([
-            instCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 170),
+            instCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             instCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             instCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             instCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
 }
 
 // MARK: - UICollectionViewDataSourse
@@ -71,7 +106,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     // используется для определения количества элементов (ячеек) в указанной секции коллекции
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return storiesArray.count - 1
+            return storiesArray.count
         } else {
             return postsArray.count
         }
@@ -93,28 +128,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
-// UICollectionViewDelegateFlowLayout методы
-// вы настраиваете размеры ячеек (cell size) для элементов коллекции (UICollectionView) в зависимости от их секции (section) и индекса внутри секции (indexPath).
-extension ProfileViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.width
-        if indexPath.section == 0 {
-            return CGSize(width: 60, height: 100)
-        } else {
-            let itemWidth = (width - 30) / 3
-            return CGSize(width: itemWidth, height: 230)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, scrollDirectionForSectionAt section: Int) -> UICollectionView.ScrollDirection {
-        if section == 0 {
-            return .horizontal
-        } else {
-            return .vertical
-        }
-    }
-}
 
 extension ProfileViewController {
     
