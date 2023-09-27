@@ -70,7 +70,7 @@ class StoryCell: UICollectionViewCell {
             storyImageView.topAnchor.constraint(equalTo: topAnchor),
             storyImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             storyImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            storyImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            storyImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30),
             storyImageView.heightAnchor.constraint(equalToConstant: 60),
             storyImageView.widthAnchor.constraint(equalToConstant: 60),
             

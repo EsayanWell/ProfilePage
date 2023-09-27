@@ -46,7 +46,7 @@ class PostCell: UICollectionViewCell {
     func setConstraits() {
         // Настройка ограничений для imageView,
         NSLayoutConstraint.activate([
-            postImageView.topAnchor.constraint(equalTo: topAnchor, constant: 80),
+            postImageView.topAnchor.constraint(equalTo: topAnchor),
             postImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             postImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             postImageView.bottomAnchor.constraint(equalTo: bottomAnchor),

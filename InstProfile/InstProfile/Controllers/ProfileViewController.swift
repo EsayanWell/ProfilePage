@@ -13,15 +13,12 @@ class ProfileViewController: UIViewController {
     // массив историй
     private var storiesArray: [Story] = []
     private var postsArray: [Post] = []
-    private let instCollectionView: UICollectionView = {
-        let instLayout = UICollectionViewFlowLayout()
-        // instLayout.scrollDirection = .vertical
-        let instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: instLayout)
-        instLayout.minimumLineSpacing = 10
-        instCollectionView.backgroundColor = .black
-        instCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        return instCollectionView
-    }()
+    // макет для таблицы
+    private let instLayout = UICollectionViewFlowLayout()
+    
+    private var instCollectionView: UICollectionView!
+
+//
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,17 +26,22 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .black
         title = "elonmuskrus"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        //приравнял массивы
+        // приравнял массивы
         storiesArray = fetchStoryData()
         postsArray = fetchPostData()
-        
     }
     
     // MARK: настройка UICollectionView
+    
     // коллекция будет занимать всю доступную область текущего представления
     private func setupInstCollectionView() {
-        
+        // Настройте макет UICollectionView для вертикального скролла
+        instLayout.scrollDirection = .vertical
+        instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: instLayout)
+        instCollectionView.collectionViewLayout = instLayout
         instCollectionView.backgroundColor = .black
+       
+        instCollectionView.translatesAutoresizingMaskIntoConstraints = false
         // подписка на протоколы
         instCollectionView.delegate = self
         instCollectionView.dataSource = self
@@ -56,10 +58,9 @@ class ProfileViewController: UIViewController {
             instCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-    
 }
 
-//MARK: - UICollectionViewDataSourse
+// MARK: - UICollectionViewDataSourse
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     // кол-во секций (одна для историй, другая для постов)
@@ -76,10 +77,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     
-    
-    
-    
-    
+    // настройка ячеек
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryCell", for: indexPath) as! StoryCell
@@ -93,18 +91,16 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         }
     }
-    
 }
+
 // UICollectionViewDelegateFlowLayout методы
 // вы настраиваете размеры ячеек (cell size) для элементов коллекции (UICollectionView) в зависимости от их секции (section) и индекса внутри секции (indexPath).
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = view.frame.width
-        
         if indexPath.section == 0 {
-            // let storyWidth = (width - 30) / 3
-            return CGSize(width: 60, height: 60)
+            return CGSize(width: 60, height: 90)
         } else {
             let itemWidth = (width - 30) / 3
             return CGSize(width: itemWidth, height: 230)
@@ -118,7 +114,6 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
             return .vertical
         }
     }
-    
 }
 
 extension ProfileViewController {
@@ -135,7 +130,7 @@ extension ProfileViewController {
         return [story1, story2, story3, story4, story5, story6]
         
     }
-    //данные для массива
+    // данные для массива
     func fetchPostData() -> [Post] {
         let post1  = Post(postImage: postImages.post1)
         let post2  = Post(postImage: postImages.post2)
@@ -154,4 +149,3 @@ extension ProfileViewController {
         
     }
 }
-
