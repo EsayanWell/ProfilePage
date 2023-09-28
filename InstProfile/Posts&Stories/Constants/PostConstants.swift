@@ -7,7 +7,7 @@
 
 import UIKit
 
-//устанавливаем константы с фото
+// MARK: - add photos
 struct postImages {
     static let post1  = UIImage(named: "1")!
     static let post2  = UIImage(named: "2")!

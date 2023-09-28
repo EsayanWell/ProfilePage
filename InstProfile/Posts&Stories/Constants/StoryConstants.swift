@@ -7,7 +7,7 @@
 
 import UIKit
 
-//устанавливаем константы с фото
+// MARK: - add photos
 struct storyImages {
     static let ufo        = UIImage(named: "13")!
     static let starship   = UIImage(named: "14")!

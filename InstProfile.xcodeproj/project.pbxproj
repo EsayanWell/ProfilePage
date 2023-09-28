@@ -75,7 +75,7 @@
 			children = (
 				6E18FD7A2AB88D0C00A964D8 /* AppDelegate.swift */,
 				6E18FD7C2AB88D0C00A964D8 /* SceneDelegate.swift */,
-				6E18FD8E2AB88D7200A964D8 /* InstProfile */,
+				6E18FD8E2AB88D7200A964D8 /* Posts&Stories */,
 				6E18FD832AB88D0C00A964D8 /* Assets.xcassets */,
 				6E18FD852AB88D0C00A964D8 /* LaunchScreen.storyboard */,
 				6E18FD882AB88D0C00A964D8 /* Info.plist */,
@@ -83,16 +83,15 @@
 			path = InstProfile;
 			sourceTree = "<group>";
 		};
-		6E18FD8E2AB88D7200A964D8 /* InstProfile */ = {
+		6E18FD8E2AB88D7200A964D8 /* Posts&Stories */ = {
 			isa = PBXGroup;
 			children = (
 				6E18FD8F2AB88D7F00A964D8 /* Models */,
 				6E6FC5442ABADBC000853BCC /* Views */,
 				6E18FD912AB88D9200A964D8 /* Controllers */,
-				6E6FC5492ABC3C3700853BCC /* StoryConstants.swift */,
-				6E6FC54D2ABDAA5D00853BCC /* PostConstants.swift */,
+				6E4062E62AC57DB80026F6B0 /* Constants */,
 			);
-			path = InstProfile;
+			path = "Posts&Stories";
 			sourceTree = "<group>";
 		};
 		6E18FD8F2AB88D7F00A964D8 /* Models */ = {
@@ -110,6 +109,15 @@
 				6E18FD7E2AB88D0C00A964D8 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6E4062E62AC57DB80026F6B0 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				6E6FC54D2ABDAA5D00853BCC /* PostConstants.swift */,
+				6E6FC5492ABC3C3700853BCC /* StoryConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		6E6FC5442ABADBC000853BCC /* Views */ = {

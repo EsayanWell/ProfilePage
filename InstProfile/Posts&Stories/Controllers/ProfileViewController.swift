@@ -15,14 +15,17 @@ class ProfileViewController: UIViewController {
     private var postsArray: [Post] = []
     // макет для таблицы
     private let instLayout = UICollectionViewFlowLayout()
-    
+    // таблица
     private var instCollectionView: UICollectionView!
-
-//
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupInstCollectionView()
+        // Отключаем осветление навигационного бара при перемещении таблицы
+      
+
+        
         view.backgroundColor = .black
         title = "elonmuskrus"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -32,50 +35,50 @@ class ProfileViewController: UIViewController {
     }
     
     private func makeLayout() -> UICollectionViewCompositionalLayout {
-           let layout = UICollectionViewCompositionalLayout { [unowned self] sectionIndex, _ in
-               switch sectionIndex {
-               case 0: return makeStoriesSection()
-               case 1: return makePostsSection()
-               default: return nil
-               }
-           }
-           return layout
-       }
-
-       private func makeStoriesSection() -> NSCollectionLayoutSection {
-           let item = NSCollectionLayoutItem(layoutSize: .init(
-               widthDimension: .fractionalWidth(1),
-               heightDimension: .fractionalHeight(1)
-           ))
-           let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(60), heightDimension: .absolute(90)), subitems: [item])
-           let section = NSCollectionLayoutSection(group: group)
-           section.interGroupSpacing = 30
-           section.orthogonalScrollingBehavior = .continuous
-           return section
-       }
-
-       private func makePostsSection() -> NSCollectionLayoutSection {
-           let item = NSCollectionLayoutItem(layoutSize: .init(
-               widthDimension: .fractionalWidth(1/3),
-               heightDimension: .fractionalHeight(1)
-           ))
-           item.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
-           let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(230)), subitems: [item])
-           let section = NSCollectionLayoutSection(group: group)
-           return section
-       }
-
+        let layout = UICollectionViewCompositionalLayout { [unowned self] sectionIndex, _ in
+            switch sectionIndex {
+            case 0: return makeStoriesSection()
+            case 1: return makePostsSection()
+            default: return nil
+            }
+        }
+        return layout
+    }
+    
+    private func makeStoriesSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: .init(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        ))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(60), heightDimension: .absolute(90)), subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 30
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+    
+    private func makePostsSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: .init(
+            widthDimension: .fractionalWidth(1/3),
+            heightDimension: .fractionalHeight(1)
+        ))
+        item.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(230)), subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
     
     // MARK: настройка UICollectionView
     
-    // коллекция будет занимать всю доступную область текущего представления
     private func setupInstCollectionView() {
         // Настройте макет UICollectionView для вертикального скролла
         instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: makeLayout())
         instCollectionView.collectionViewLayout = makeLayout()
         instCollectionView.backgroundColor = .black
-       
         instCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        // отключение индикаторов при перемещении
+        instCollectionView.showsVerticalScrollIndicator = false
+        instCollectionView.showsHorizontalScrollIndicator = false
         // подписка на протоколы
         instCollectionView.delegate = self
         instCollectionView.dataSource = self
@@ -83,19 +86,15 @@ class ProfileViewController: UIViewController {
         instCollectionView.register(StoryCell.self, forCellWithReuseIdentifier: "StoryCell")
         instCollectionView.register(PostCell.self, forCellWithReuseIdentifier: "PostCell")
         view.addSubview(instCollectionView)
-        // настройка constraits
-        
-        NSLayoutConstraint.activate([
-            instCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            instCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            instCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            instCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        // настройка constraits с помощью snapKit
+        instCollectionView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
-    
 }
 
 // MARK: - UICollectionViewDataSourse
+
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     // кол-во секций (одна для историй, другая для постов)
@@ -128,10 +127,9 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
-
 extension ProfileViewController {
     
-    // данные для массива
+    // данные для массива Story
     func fetchStoryData() -> [Story] {
         let story1 = Story(storyImage: storyImages.ufo, storyText: "UFO")
         let story2 = Story(storyImage: storyImages.starship, storyText: "Starship")
@@ -143,7 +141,8 @@ extension ProfileViewController {
         return [story1, story2, story3, story4, story5, story6]
         
     }
-    // данные для массива
+    
+    // данные для массива Post
     func fetchPostData() -> [Post] {
         let post1  = Post(postImage: postImages.post1)
         let post2  = Post(postImage: postImages.post2)
