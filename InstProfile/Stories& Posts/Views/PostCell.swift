@@ -16,11 +16,10 @@ class PostCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(postImageView)
-        // вызов функций
+        // MARK: - sets (функции настройки элементов для cell)
         imageViewCongigure()
         setConstraits()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

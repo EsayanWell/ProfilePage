@@ -19,13 +19,11 @@ class StoryCell: UICollectionViewCell {
         
         addSubview(storyImageView)
         addSubview(storyLabel)
-        
-        // вызов функций
-        setConstraits()
+        // MARK: - sets (функции настройки элементов для cell)
         configureImageView()
         congigureLabel()
+        setConstraits()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
