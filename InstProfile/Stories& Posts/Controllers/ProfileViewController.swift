@@ -31,7 +31,6 @@ class ProfileViewController: UIViewController {
     private func setupInstCollectionView() {
         // Создается экземпляр UICollectionView с начальным фреймом нулевого размера и устанавливается на него макет (makeLayout) из функции
         instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: makeLayout())
-        instCollectionView.translatesAutoresizingMaskIntoConstraints = false
         // отключение индикаторов при перемещении
         instCollectionView.showsVerticalScrollIndicator = false
         instCollectionView.showsHorizontalScrollIndicator = false

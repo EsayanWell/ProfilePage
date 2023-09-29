@@ -40,13 +40,11 @@ class StoryCell: UICollectionViewCell {
         storyImageView.layer.cornerRadius = 30
         storyImageView.clipsToBounds = true
         storyImageView.contentMode = .scaleAspectFill
-        storyImageView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     // настройка текста
     func congigureLabel() {
         storyLabel.textColor = .white
-        storyLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     // MARK: - Constraits using SnapKit

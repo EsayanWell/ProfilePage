@@ -33,13 +33,13 @@ class PostCell: UICollectionViewCell {
     func imageViewCongigure() {
         postImageView.clipsToBounds = true
         postImageView.contentMode = .scaleAspectFill
-        postImageView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     // MARK: - Constraits using SnapKit
     func setConstraits() {
         postImageView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+            // прибивает все 4 стороны
+            make.edges.equalToSuperview()
         }
     }
 }
