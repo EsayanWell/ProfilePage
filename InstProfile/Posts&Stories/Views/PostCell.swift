@@ -9,7 +9,8 @@ import UIKit
 import SnapKit
 
 class PostCell: UICollectionViewCell {
-    var postImageView = UIImageView()
+    // MARK: - Constant
+    let postImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,16 +31,13 @@ class PostCell: UICollectionViewCell {
     }
     
     // MARK: - configures
-    
     func imageViewCongigure() {
         postImageView.clipsToBounds = true
         postImageView.contentMode = .scaleAspectFill
         postImageView.translatesAutoresizingMaskIntoConstraints = false
-        postImageView.backgroundColor = .white
     }
     
     // MARK: - Constraits using SnapKit
-    
     func setConstraits() {
         postImageView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()

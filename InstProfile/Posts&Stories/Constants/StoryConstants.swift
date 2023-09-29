@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - add photos
+// MARK: - add photos fot Story
 struct storyImages {
     static let ufo        = UIImage(named: "13")!
     static let starship   = UIImage(named: "14")!

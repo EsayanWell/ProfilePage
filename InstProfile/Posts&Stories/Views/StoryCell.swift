@@ -37,29 +37,21 @@ class StoryCell: UICollectionViewCell {
     }
     
     // MARK: - configures
-    
     // настройка изображения
     func configureImageView() {
         storyImageView.layer.cornerRadius = 30
         storyImageView.clipsToBounds = true
         storyImageView.contentMode = .scaleAspectFill
         storyImageView.translatesAutoresizingMaskIntoConstraints = false
-        storyImageView.backgroundColor = .purple
     }
     
     // настройка текста
     func congigureLabel() {
-        // динамическое расширение линий
-        storyLabel.numberOfLines = 0
         storyLabel.textColor = .white
-        storyLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        // уменьшает размер текста по пространству
-        storyLabel.adjustsFontSizeToFitWidth = true
         storyLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     // MARK: - Constraits using SnapKit
-    
     func setConstraits() {
         storyImageView.snp.makeConstraints { make in
             make.top.trailing.leading.equalToSuperview()
@@ -73,4 +65,3 @@ class StoryCell: UICollectionViewCell {
         }
     }
 }
-

@@ -21,15 +21,11 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupInstCollectionView()
-        // Отключаем осветление навигационного бара при перемещении таблицы
-      
-
-        
-        view.backgroundColor = .black
         title = "elonmuskrus"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        // приравнял массивы
+        // вызов функции
+        setupInstCollectionView()
+        
+        // приравнял массивы и базы
         storiesArray = fetchStoryData()
         postsArray = fetchPostData()
     }
@@ -69,12 +65,10 @@ class ProfileViewController: UIViewController {
     }
     
     // MARK: настройка UICollectionView
-    
     private func setupInstCollectionView() {
         // Настройте макет UICollectionView для вертикального скролла
         instCollectionView = UICollectionView(frame: .zero, collectionViewLayout: makeLayout())
         instCollectionView.collectionViewLayout = makeLayout()
-        instCollectionView.backgroundColor = .black
         instCollectionView.translatesAutoresizingMaskIntoConstraints = false
         // отключение индикаторов при перемещении
         instCollectionView.showsVerticalScrollIndicator = false
@@ -82,11 +76,11 @@ class ProfileViewController: UIViewController {
         // подписка на протоколы
         instCollectionView.delegate = self
         instCollectionView.dataSource = self
-        // Эта строка регистрирует класс VerticalCell для использования в коллекции с определенным идентификатором "VerticalCell"
+        // регистрация
         instCollectionView.register(StoryCell.self, forCellWithReuseIdentifier: "StoryCell")
         instCollectionView.register(PostCell.self, forCellWithReuseIdentifier: "PostCell")
         view.addSubview(instCollectionView)
-        // настройка constraits с помощью snapKit
+        // настройка constraits с помощью SnapKit
         instCollectionView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
@@ -94,7 +88,6 @@ class ProfileViewController: UIViewController {
 }
 
 // MARK: - UICollectionViewDataSourse
-
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     // кол-во секций (одна для историй, другая для постов)
@@ -127,6 +120,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
+// MARK: - fetchData
 extension ProfileViewController {
     
     // данные для массива Story
@@ -139,7 +133,6 @@ extension ProfileViewController {
         let story6 = Story(storyImage: storyImages.starlink, storyText: "Starlink")
         
         return [story1, story2, story3, story4, story5, story6]
-        
     }
     
     // данные для массива Post
@@ -158,6 +151,5 @@ extension ProfileViewController {
         let post12 = Post(postImage: postImages.post12)
         
         return [post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12]
-        
     }
 }

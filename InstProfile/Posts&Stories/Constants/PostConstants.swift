@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - add photos
+// MARK: - add photos for Post
 struct postImages {
     static let post1  = UIImage(named: "1")!
     static let post2  = UIImage(named: "2")!

@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 // MARK: - Story model
-
 struct Story {
     let storyImage: UIImage
     let storyText: String

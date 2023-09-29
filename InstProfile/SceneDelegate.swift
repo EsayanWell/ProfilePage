@@ -19,19 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //удаление storyBoard
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        //создание navigationController
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: ProfileViewController())
-     
+        // метод для того, чтобы убрать эффект осветления при движении
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .black
                     UINavigationBar.appearance().standardAppearance = appearance
                     UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
+        //создание navigationController
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        window?.rootViewController = UINavigationController(rootViewController: ProfileViewController())
         window?.makeKeyAndVisible()
-        
-        
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

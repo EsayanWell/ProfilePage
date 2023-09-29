@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 // MARK: - Post model
-
 struct Post {
     let postImage: UIImage
 }
