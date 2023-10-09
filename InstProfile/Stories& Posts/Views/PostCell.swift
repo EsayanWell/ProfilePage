@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class PostCell: UICollectionViewCell {
+    
     // MARK: - Constant
     let postImageView = UIImageView()
     
@@ -16,6 +17,7 @@ class PostCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(postImageView)
+        
         // MARK: - sets (функции настройки элементов для cell)
         imageViewCongigure()
         setConstraits()

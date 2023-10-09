@@ -53,7 +53,6 @@ class StoryCell: UICollectionViewCell {
             make.top.trailing.leading.equalToSuperview()
             make.height.width.equalTo(60)
         }
-        
         storyLabel.snp.makeConstraints { make in
             make.top.equalTo(storyImageView.snp.bottom).offset(10)
             make.bottom.equalToSuperview()
