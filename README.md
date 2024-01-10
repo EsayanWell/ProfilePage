@@ -15,7 +15,7 @@ What was ultimately done while working on creating the application:
 - оформление кода 
 - знакомство с UICollectionView
 - разобрался с тем как удалять storyboard
-- выяснил, как делать некоторые фишки (убирать осветление при прокрутке и индикаторы прокуртки)
+- выяснил, как делать некоторые фишки (убирать осветление при прокрутке и индикаторы прокрутки)
 - использовал в проекте SnapKit 
 
 ![ProfilePage](https://github.com/EsayanWell/InstProfile/assets/98737871/50ad24c0-5660-46c8-b3a7-f13652c2efb6)
