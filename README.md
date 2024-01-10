@@ -1,7 +1,7 @@
 # ProfilePage
 
 # An application that simulates a user's page on a social network.
-What was ultimately done within the application:
+What was ultimately done while working on creating the application:
 - the application structure is written in MVC
 - code design
 - introduction to UICollectionView
@@ -10,7 +10,7 @@ What was ultimately done within the application:
 - used SnapKit in the project
 
 # Приложение, симулирующее страницу пользователя в социальной сети.
-Что по итогу сделано в рамках приложения:
+Что по итогу сделано в ходе работы над созданием приложения:
 - структура приложения написана в MVC
 - оформление кода 
 - знакомство с UICollectionView
