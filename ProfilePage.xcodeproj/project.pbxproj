@@ -23,7 +23,7 @@
 
 /* Begin PBXFileReference section */
 		4367B56710CBDE2B3E4DD41D /* Pods-InstProfile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstProfile.release.xcconfig"; path = "Target Support Files/Pods-InstProfile/Pods-InstProfile.release.xcconfig"; sourceTree = "<group>"; };
-		6E18FD772AB88D0C00A964D8 /* InstProfile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstProfile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E18FD772AB88D0C00A964D8 /* ProfilePage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProfilePage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E18FD7A2AB88D0C00A964D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E18FD7C2AB88D0C00A964D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6E18FD7E2AB88D0C00A964D8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		6E18FD6E2AB88D0C00A964D8 = {
 			isa = PBXGroup;
 			children = (
-				6E18FD792AB88D0C00A964D8 /* InstProfile */,
+				6EE36C432B4ECAF5008787A9 /* ProfilePage */,
 				6E18FD782AB88D0C00A964D8 /* Products */,
 				F7B8F358523D97D22B4A598F /* Pods */,
 				DC02E5E54282756A8E3F07D2 /* Frameworks */,
@@ -65,22 +65,9 @@
 		6E18FD782AB88D0C00A964D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6E18FD772AB88D0C00A964D8 /* InstProfile.app */,
+				6E18FD772AB88D0C00A964D8 /* ProfilePage.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		6E18FD792AB88D0C00A964D8 /* InstProfile */ = {
-			isa = PBXGroup;
-			children = (
-				6E18FD7A2AB88D0C00A964D8 /* AppDelegate.swift */,
-				6E18FD7C2AB88D0C00A964D8 /* SceneDelegate.swift */,
-				6E18FD8E2AB88D7200A964D8 /* Stories& Posts */,
-				6E18FD832AB88D0C00A964D8 /* Assets.xcassets */,
-				6E18FD852AB88D0C00A964D8 /* LaunchScreen.storyboard */,
-				6E18FD882AB88D0C00A964D8 /* Info.plist */,
-			);
-			path = InstProfile;
 			sourceTree = "<group>";
 		};
 		6E18FD8E2AB88D7200A964D8 /* Stories& Posts */ = {
@@ -129,6 +116,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		6EE36C432B4ECAF5008787A9 /* ProfilePage */ = {
+			isa = PBXGroup;
+			children = (
+				6E18FD7A2AB88D0C00A964D8 /* AppDelegate.swift */,
+				6E18FD7C2AB88D0C00A964D8 /* SceneDelegate.swift */,
+				6E18FD8E2AB88D7200A964D8 /* Stories& Posts */,
+				6E18FD832AB88D0C00A964D8 /* Assets.xcassets */,
+				6E18FD852AB88D0C00A964D8 /* LaunchScreen.storyboard */,
+				6E18FD882AB88D0C00A964D8 /* Info.plist */,
+			);
+			path = ProfilePage;
+			sourceTree = "<group>";
+		};
 		DC02E5E54282756A8E3F07D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,9 +149,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6E18FD762AB88D0C00A964D8 /* InstProfile */ = {
+		6E18FD762AB88D0C00A964D8 /* ProfilePage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E18FD8B2AB88D0C00A964D8 /* Build configuration list for PBXNativeTarget "InstProfile" */;
+			buildConfigurationList = 6E18FD8B2AB88D0C00A964D8 /* Build configuration list for PBXNativeTarget "ProfilePage" */;
 			buildPhases = (
 				40CB105558510C4B2097AAE0 /* [CP] Check Pods Manifest.lock */,
 				6E18FD732AB88D0C00A964D8 /* Sources */,
@@ -163,9 +163,9 @@
 			);
 			dependencies = (
 			);
-			name = InstProfile;
+			name = ProfilePage;
 			productName = InstProfile;
-			productReference = 6E18FD772AB88D0C00A964D8 /* InstProfile.app */;
+			productReference = 6E18FD772AB88D0C00A964D8 /* ProfilePage.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -183,7 +183,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6E18FD722AB88D0C00A964D8 /* Build configuration list for PBXProject "InstProfile" */;
+			buildConfigurationList = 6E18FD722AB88D0C00A964D8 /* Build configuration list for PBXProject "ProfilePage" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -196,7 +196,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6E18FD762AB88D0C00A964D8 /* InstProfile */,
+				6E18FD762AB88D0C00A964D8 /* ProfilePage */,
 			);
 		};
 /* End PBXProject section */
@@ -410,7 +410,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3324CJVR4C;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = InstProfile/Info.plist;
+				INFOPLIST_FILE = ProfilePage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -438,7 +438,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3324CJVR4C;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = InstProfile/Info.plist;
+				INFOPLIST_FILE = ProfilePage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -459,7 +459,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6E18FD722AB88D0C00A964D8 /* Build configuration list for PBXProject "InstProfile" */ = {
+		6E18FD722AB88D0C00A964D8 /* Build configuration list for PBXProject "ProfilePage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6E18FD892AB88D0C00A964D8 /* Debug */,
@@ -468,7 +468,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6E18FD8B2AB88D0C00A964D8 /* Build configuration list for PBXNativeTarget "InstProfile" */ = {
+		6E18FD8B2AB88D0C00A964D8 /* Build configuration list for PBXNativeTarget "ProfilePage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6E18FD8C2AB88D0C00A964D8 /* Debug */,
